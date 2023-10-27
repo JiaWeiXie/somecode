@@ -33,24 +33,27 @@ class Solution:
         if not nums:
             return 0
 
-        nums = list(sorted(set(nums)))
-        first = nums.pop(0)
-        next_num = first + 1
-        tmp = [first]
-        result = []
-        for val in nums:
-            if val != next_num:
-                if len(tmp) > len(result):
-                    result = tmp.copy()
-                tmp.clear()
+        values = set(nums)
+        longest = 1
+        tmp = values.pop()
+        tmp_val = 1
+        while values:
+            if tmp - 1 in values:
+                values.add(tmp)
+                tmp -= 1
+                values.remove(tmp)
+                continue
 
-            tmp.append(val)
-            next_num = val + 1
+            if tmp + 1 in values:
+                tmp += 1
+                tmp_val += 1
+                values.remove(tmp)
+            else:
+                tmp = values.pop()
+                tmp_val = 1
+            longest = max(longest, tmp_val)
 
-        if len(tmp) > len(result):
-            result = tmp.copy()
-
-        return len(result)
+        return longest
 
 
 import json
