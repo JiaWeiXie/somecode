@@ -36,42 +36,43 @@ s and t consist of uppercase and lowercase English letters.
  
 Follow up: Could you find an algorithm that runs in O(m + n) time?
 """
+from collections import Counter, defaultdict
+
+
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        length = len(s)
         left = 0
         right = 0
         mini_window = ""
-        while left < length:
-            tmp = t
-            flag = False
-            while tmp and right < length:
-                char = s[right]
-                print(char, end="")
-                if char in tmp:
-                    tmp = tmp.replace(char, "", 1)
-                    if not flag:
-                        flag = True
-                        left = right
-                
-                string = s[left:right+1]
-                if not tmp and (mini_window == "" or len(string) < len(mini_window)):
-                    mini_window = string
-                right += 1
-            print()
-            left += 1
-            right = left
+        counter = dict(Counter(t))
+        n = sum(counter.values())
+        cnt = defaultdict(lambda: 0)
+
+        def check():
+            for k, v in counter.items():
+                if cnt[k] < v:
+                    return False
+            return True
+
+        for right, char in enumerate(s):
+            if char in counter:
+                cnt[char] += 1
+
+            while check():
+                substring = s[left : right + 1]
+                if len(substring) <= len(mini_window) or mini_window == "":
+                    mini_window = substring
+
+                if s[left] in cnt:
+                    cnt[s[left]] -= 1
+                left += 1
+
         return mini_window
+
 
 solution = Solution()
 with open("76/in.txt", "r", encoding="utf-8") as input_file:
     for line in input_file.read().splitlines():
-        s, t , *_ = line.split(",")
-        print("=" * 20, s, "=" * 20)
-        print(solution.minWindow(s, t))                     
-                
-                
-                
-                
-            
-        
+        s, t, *_ = line.split(",")
+        print("=" * 20, s, "=" * 20, t, "=" * 20)
+        print(solution.minWindow(s, t))
