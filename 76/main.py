@@ -45,7 +45,6 @@ class Solution:
         right = 0
         mini_window = ""
         counter = dict(Counter(t))
-        n = sum(counter.values())
         cnt = defaultdict(lambda: 0)
 
         def check():
