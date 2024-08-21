@@ -1,7 +1,7 @@
 """
 3. Longest Substring Without Repeating Characters
 
-Given a string `s`, find the length of the longest 
+Given a string `s`, find the length of the longest
 substring without repeating characters.
 
 
@@ -23,13 +23,15 @@ Input: s = "pwwkew"
 Output: 3
 
 Explanation: The answer is "wke", with the length of 3.
-Notice that the answer must be a substring, "pwke" is a subsequence and not a substring. 
+Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
 
 Constraints:
 
 0 <= s.length <= 5 * 104
 s consists of English letters, digits, symbols and spaces.
 """
+
+
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         max_index = len(s) - 1
@@ -46,10 +48,10 @@ class Solution:
             else:
                 substring += char
                 index += 1
-                
+
             if len(substring) > len(longest):
                 longest = substring
-            
+
             if index > max_index:
                 offset += len(longest)
                 index = offset
@@ -59,8 +61,10 @@ class Solution:
         return len(longest)
 
 
+from pathlib import Path
+
 solution = Solution()
-with open("3/in.txt", "r", encoding="utf-8") as input_file:
+with Path("3/in.txt").open(encoding="utf-8") as input_file:
     for line in input_file.read().splitlines():
         print("=" * 20)
         print(solution.lengthOfLongestSubstring(line))

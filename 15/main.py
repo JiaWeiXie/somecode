@@ -11,7 +11,7 @@ Example 1:
 
 Input: nums = [-1,0,1,2,-1,-4]
 Output: [[-1,-1,2],[-1,0,1]]
-Explanation: 
+Explanation:
 nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.
 nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0.
 nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.
@@ -29,21 +29,21 @@ Example 3:
 Input: nums = [0,0,0]
 Output: [[0,0,0]]
 Explanation: The only possible triplet sums up to 0.
- 
+
 
 Constraints:
 
 3 <= nums.length <= 3000
 -105 <= nums[i] <= 105
 """
-from typing import List
+
 from collections import defaultdict
 
 
 class Solution:
-    def threeSum(self, nums: List[int]) -> List[List[int]]:
+    def threeSum(self, nums: list[int]) -> list[list[int]]:
         result = set()
-        nums = list(sorted(nums))
+        nums = sorted(nums)
         count = len(nums)
         counter = defaultdict(lambda: 0)
         for v in nums:
@@ -64,9 +64,10 @@ class Solution:
 
 
 import json
+from pathlib import Path
 
 solution = Solution()
-with open("15/in.txt", "r", encoding="utf-8") as input_file:
+with Path("15/in.txt").open(encoding="utf-8") as input_file:
     for line in input_file.read().splitlines():
         strs = json.loads(line)
         print(solution.threeSum(strs))

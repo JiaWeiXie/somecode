@@ -30,8 +30,8 @@ Example 3:
 
 Input: nums = [11,13,15,17]
 Output: 11
-Explanation: The original array was [11,13,15,17] and it was rotated 4 times. 
- 
+Explanation: The original array was [11,13,15,17] and it was rotated 4 times.
+
 
 Constraints:
 
@@ -41,11 +41,10 @@ n == nums.length
 All the integers of nums are unique.
 nums is sorted and rotated between 1 and n times.
 """
-from typing import List
 
 
 class Solution:
-    def findMin(self, nums: List[int]) -> int:
+    def findMin(self, nums: list[int]) -> int:
         length = len(nums)
         left = 0
         right = length - 1
@@ -54,7 +53,7 @@ class Solution:
             if nums[left] < nums[right]:
                 result = min(nums[left], result)
                 break
-            
+
             middle = (left + right) // 2
             result = min(nums[middle], result)
             if nums[middle] > nums[left]:
@@ -63,14 +62,15 @@ class Solution:
             else:
                 right = middle - 1
                 result = min(nums[right], result)
-                
+
         return result
 
 
 import json
+from pathlib import Path
 
 solution = Solution()
-with open("153/in.txt", "r", encoding="utf-8") as input_file:
+with Path("153/in.txt").open(encoding="utf-8") as input_file:
     for line in input_file.read().splitlines():
         nums = json.loads(line)
         print("=" * 20)

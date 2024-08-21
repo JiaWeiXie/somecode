@@ -7,7 +7,7 @@ You can return the answer in any order.
 An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase,
 typically using all the original letters exactly once.
 
- 
+
 
 Example 1:
 
@@ -21,7 +21,7 @@ Example 3:
 
 Input: strs = ["a"]
 Output: [["a"]]
- 
+
 
 Constraints:
 
@@ -29,23 +29,24 @@ Constraints:
 0 <= strs[i].length <= 100
 strs[i] consists of lowercase English letters.
 """
-from typing import List
+
 from collections import defaultdict
 
+
 class Solution:
-    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+    def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
         result = defaultdict(list)
         for s in strs:
             tmp = str(sorted(s))
             result[tmp].append(s)
         return list(result.values())
-    
-    
+
 
 import json
+from pathlib import Path
 
 solution = Solution()
-with open("49/in.txt", "r", encoding="utf-8") as input_file:
+with Path("49/in.txt").open(encoding="utf-8") as input_file:
     for line in input_file.read().splitlines():
         strs = json.loads(line)
         print(solution.groupAnagrams(strs))

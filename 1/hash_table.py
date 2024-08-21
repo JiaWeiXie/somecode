@@ -38,9 +38,9 @@ Follow-up: Can you come up with an algorithm that is less than O(n^2) time compl
 
 class Solution:
     def twoSum(self, nums: list[int], target: int) -> list[int]:
-        last = len(nums)
-        for index in range(0, last - 1):
-            for idx in range(index + 1, last):
-                result = nums[index] + nums[idx]
-                if result == target:
-                    return [index, idx]
+        mapping = {}
+        for i, v in enumerate(nums):
+            if target - v in mapping:
+                return [mapping[target - v], i]
+            mapping[v] = i
+        return []

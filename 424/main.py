@@ -18,13 +18,14 @@ Output: 4
 Explanation: Replace the one 'A' in the middle with 'B' and form "AABBBBA".
 The substring "BBBB" has the longest repeating letters, which is 4.
 There may exists other ways to achieve this answer too.
- 
+
 Constraints:
 
 1 <= s.length <= 105
 s consists of only uppercase English letters.
 0 <= k <= s.length
 """
+
 from collections import defaultdict
 
 
@@ -47,8 +48,10 @@ class Solution:
         return longest
 
 
+from pathlib import Path
+
 solution = Solution()
-with open("424/in.txt", "r", encoding="utf-8") as input_file:
+with Path("424/in.txt").open(encoding="utf-8") as input_file:
     for line in input_file.read().splitlines():
         s, k = line.split(",")
         print("=" * 20, s, k)

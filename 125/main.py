@@ -1,13 +1,13 @@
 """
 125. Valid Palindrome
 
-A phrase is a palindrome if, 
-after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, 
+A phrase is a palindrome if,
+after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters,
 it reads the same forward and backward. Alphanumeric characters include letters and numbers.
 
 Given a string s, return true if it is a palindrome, or false otherwise.
 
- 
+
 
 Example 1:
 
@@ -27,13 +27,14 @@ Input: s = " "
 Output: true
 Explanation: s is an empty string "" after removing non-alphanumeric characters.
 Since an empty string reads the same forward and backward, it is a palindrome.
- 
+
 
 Constraints:
 
 1 <= s.length <= 2 * 105
 s consists only of printable ASCII characters.
 """
+
 import string
 
 
@@ -44,5 +45,5 @@ class Solution:
             return True
 
         chars = string.ascii_lowercase + string.digits
-        s = "".join((v for v in s.lower() if v in chars))
+        s = "".join(v for v in s.lower() if v in chars)
         return s == s[::-1]

@@ -29,19 +29,21 @@ Constraints:
 1 <= s.length <= 104
 s consists of parentheses only '()[]{}'.
 """
+
+
 class Solution:
     def isValid(self, s: str) -> bool:
         stack = []
-        mapping = {"(": ")", "[": "]", "{":"}"}
+        mapping = {"(": ")", "[": "]", "{": "}"}
         for c in s:
             if not stack:
                 stack.append(c)
                 continue
-                
+
             p = stack.pop()
             if mapping.get(p) == c:
                 continue
-            
+
             stack.append(p)
             stack.append(c)
         return not stack
